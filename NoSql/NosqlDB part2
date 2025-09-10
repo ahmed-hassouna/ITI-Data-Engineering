@@ -1,0 +1,175 @@
+# Introduction
+
+## NOSQL
+- **Not only SQL**
+
+### The Common Problem: Relational Databases Hit a Wall
+
+All these companies (Google, Amazon, Facebook) were growing at an unprecedented scale in the early 2000s. Their data needs overwhelmed traditional SQL databases:
+
+*   **Volume:** They were dealing with petabytes of data.
+*   **Velocity:** They needed to read and write millions of operations per second.
+*   **Variety:** Their data wasn't always neatly structured into rows and columns (e.g., user profiles, product catalogs, web indexes, social graphs).
+
+They needed systems that were **highly scalable, fault-tolerant, and flexible**. This led them to develop the NoSQL systems shown in the image.
+
+## Characteristics
+- Most NoSQL systems are **distributed databases** or **distributed storage systems**.
+- Focus on:
+  - Semi-structured data storage  
+  - High performance  
+  - Availability  
+  - Data replication  
+  - Scalability
+--
+# Developing NoSQL Databases – Context and Requirements
+
+When designing a **NoSQL database**, the priorities are often different from **relational databases (RDBMSs)**.
+
+---
+
+## 1. Query Responsiveness vs. Accuracy
+- In many NoSQL systems, the main goal is **fast query responses** rather than always ensuring **100% correctness** of the data.  
+- **Example:** In a recommendation system or social media feed, it is more important that a user sees results quickly, even if some data is slightly outdated.  
+
+---
+
+## 2. Availability Over Strict Consistency
+- Unlike relational databases that may return an error if the system is down or a lock is in place, NoSQL systems are designed to **always return some data**.  
+- The system should **never tell the user “database unavailable”**, but instead respond with whatever data is currently available (even if not the latest).  
+- This is closely tied to the **AP (Availability + Partition Tolerance)** side of the **CAP theorem**, where consistency may be relaxed.  
+
+---
+
+## 3. Eventual Consistency Model
+- NoSQL databases often adopt **eventual consistency**:  
+  - Queries may return slightly **stale data**.  
+  - But over time, replicas **synchronize**, and all nodes eventually hold the latest data.  
+- This trade-off ensures **low latency** and **high availability**.  
+
+---
+
+## 4. High Availability as a Core Principle
+- NoSQL databases are **distributed across multiple nodes**.  
+- Even if one node fails, other nodes can still **serve queries**.  
+- This contrasts with traditional RDBMS systems, where **downtime or locks** can block queries.  
+
+---
+
+## 5. Scalability, Performance, and Sudden Load Handling
+- Data is **partitioned and replicated** across many servers to handle **large-scale traffic**.  
+- NoSQL databases are designed to **afford sudden spikes in load** by dynamically distributing queries and writes across nodes.  
+- Focus is on **scalability** (horizontal scaling by adding more nodes) and **performance under heavy or unpredictable load**.  
+---
+## 6. Focus on Big Data Storage
+- NoSQL databases are commonly used to handle **massive volumes of structured, semi-structured, and unstructured data**.  
+- They are optimized for **distributed storage** and **parallel processing** of big data workloads.  
+---
+## Major NoSQL Systems and Their Development Motivations
+
+### 1. Google BigTable (2004)
+**Type:** Wide-Column Store
+**Development Motivation:**
+- Needed to index the entire web
+- Required massive scalability for web crawling and search operations
+- Had to handle petabytes of semi-structured website data
+- Required fast writes and reads across distributed systems
+
+### 2. Amazon DynamoDB (2007)
+**Type:** Key-Value Store
+**Development Motivation:**
+- Shopping cart and session storage needs
+- Required 24/7 availability for e-commerce platform
+- Needed predictable low-latency response times
+- Had to handle massive holiday traffic spikes
+- Prioritized availability over strong consistency
+
+### 3. Apache Cassandra (2008)
+**Type:** Wide-Column Store (Hybrid)
+**Development Motivation:**
+- Facebook's inbox search problem
+- Needed to handle massive write throughput for messages
+- Required geographic distribution with no single point of failure
+- Combined concepts from BigTable and Dynamo
+- Needed linear scalability for social media growth
+
+### 4. MongoDB (2009)
+**Type:** Document-Oriented
+**Development Motivation:**
+- Developer-friendly document model
+- Flexible schema for rapid iteration
+- JSON-like structure matching modern programming models
+- Horizontal scaling for web applications
+- Easy replication and sharding
+
+### 5. Redis (2009)
+**Type:** In-Memory Key-Value Store
+**Development Motivation:**
+- Real-time performance requirements
+- Caching and session storage needs
+- Simple data structures with blazing fast access
+- Pub/sub messaging capabilities
+- Atomic operations for high concurrency
+
+### 6. Couchbase (2011)
+**Type:** Document-Oriented
+**Development Motivation:**
+- JSON document storage with high performance
+- Mobile and IoT synchronization capabilities
+- Memory-first architecture for low latency
+- Full-text search integration
+- Cross-datacenter replication
+
+
+---
+# Key Characteristics of NoSQL Data Models & Query Languages
+
+## Core Principles
+
+### 1. Flexible Schema
+- **No predefined schema required**
+- Dynamic structure adaptation
+- Supports evolving data requirements
+
+### 2. Data Format
+- **Semi-structured data formats**
+- JSON/XML document storage
+- Native support for hierarchical data
+
+### 3. Data Integrity
+- **Application-level constraints**
+- Business logic enforced in application code
+- Database provides minimal validation
+
+### 4. Query Capabilities
+- **Simplified query languages**
+- Limited JOIN operations
+- Optimized for simple retrieval patterns
+
+### 5. Data Access
+- **Key-based API access**
+- Primary lookup through object keys
+- Direct access patterns preferred over complex queries
+
+### 6. Basic Operations
+- **SCRUD paradigm**:
+  - Search
+  - Create
+  - Read
+  - Update
+  - Delete
+
+### 7. Data Management
+- **Versioning support**
+- Conflict resolution mechanisms
+- Concurrent update handling
+
+---
+## 7. Typical Applications of NoSQL
+- Applications that generate **large-scale, fast-changing data** rely on NoSQL, such as:  
+  - 📧 **Email systems** (e.g., Gmail storing billions of messages)  
+  - 📝 **Posts and comments** in social media platforms  
+  - 📸 **Multimedia content** (images, videos, user uploads)  
+  - 🛒 **E-commerce catalogs** with millions of products  
+  - 📊 **Real-time analytics** and log data storage  
+  - 📍 **Location-based services** (maps, ride-sharing apps)  
